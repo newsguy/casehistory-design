@@ -1,0 +1,33 @@
+CaseHistory (suggested application name)
+========================================
+
+Intent: Provides users a way to know all about any news story, in chronological order as events unfolded, and in a simple interface.
+
+Home Page View (initial design): search field for queries at top or right hand side, with a panel showing all news items for queried story.
+
+Architecture (initial design)
+-----------------------------
+Right now, we have these components:
+	(i) Crawler: will crawl relevant news websites, build indexes. Proposed technologies are (a)Nutch (b)Bixo
+	(ii) Plaform/Message Queues: will be the medium of communication between components. Proposed technology is any suitable JMS implementation, like ActiveMQ.
+	(iii) Intelligence: will recieve a set of potential news items and look for news items that tie up most strongly for a given news story, and publish the set of results on the message queue. Proposed technologies are Python NLTK toolkit, Apache Mahout.
+	(iii) NewsItemsPicker: will retrieve a set of potential news items from the search index, which will be sent to Intelligence component to find the best ones. Proposed technology: Java.
+	(iv) Web Frontend: publishes queries on the platform and subscribes to results from the Intelligence component. Proposed technology: Apache Wicket, Ruby on Rails.
+	
+Implementing Intelligence
+-------------------------
+Two proposed solutions, one is in Java (Apache Mahout) and other in Python (NLTK toolkit). A preliminary comparison of these options:
+
+Apache Mahout													NLTK
+- Java based so lesser learning curve as far as					- Python based, so need to become comfortable with Python to some extent.
+usage is concerned.
+- More effort required in using the algorithms 					- Very well documented, OReilly book available. Very ready-to-use compared
+that are provided, not very ready-to-use and not				   to Mahout.
+very well documented.
+- Integrates Hadoop by default so ready for distributed			- Does not integrate Hadoop by default. We will have to write code for 
+implementation by default.											distributed execution. Python Libraries/APIs are available
+																	however	for	this.
+
+Caching intelligence
+--------------------
+This is not entirely clear right now. The intent here is to see whether it makes sense to persist the learnings of the Intelligence component, from performance point of view. If it does make sense, we could look into non-relational databases like Neo4j or CouchDB.
