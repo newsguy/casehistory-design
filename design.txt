@@ -25,7 +25,7 @@ usage is concerned.
 that are provided, not very ready-to-use and not				   to Mahout.
 very well documented.
 - Integrates Hadoop by default so ready for distributed			- Does not integrate Hadoop by default. We will have to write code for 
-implementation by default.											distributed execution. Python Libraries/APIs are available
+implementation by default.											distributed execution. Python Libraries/APIs (Stomp) are available
 																	however	for	this.
 
 Caching intelligence
