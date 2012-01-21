@@ -1,0 +1,19 @@
+TASKS - HIGH LEVEL
+==================
+
+WebApp
+------
+- finish the web application: user can choose their newspaper, enter queries, see all news articles for theie queries with 
+summaries
+- deploy web application to EC2
+
+NewsItemsPicker
+---------------
+- implement module to retrieve articles from NYTimes for given queries using Article Search API
+- implement module to retrieve articles from New Yorker for given queries using custom query urls
+
+Intelligence
+-------------
+- finding most relevant ones: experiment with NLTK and Mahout for this purpose, compare results
+- store/cache results, use a graph database for maintaining article information
+- use summarization algorithms on the articles, compare & tune results
